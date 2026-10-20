@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-Powered CRM Request Automation | Detailed Workflow</title>
+<style>
+:root{
+ --navy:#10233f;--navy2:#173e68;--blue:#1769aa;--cyan:#0e8790;--green:#16815b;
+ --amber:#b56c0c;--red:#b63c3c;--purple:#6d4bb6;--ink:#172b4d;--muted:#62738a;
+ --line:#d8e2ee;--bg:#f3f6fa;--white:#fff;--softblue:#edf5ff;--softgreen:#eaf7f1;
+ --softamber:#fff6e6;--softpurple:#f3efff;--softred:#fff0ef;--shadow:0 8px 26px rgba(16,35,63,.07)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+a{color:var(--blue)}button,input,select,textarea{font:inherit}
+.hero{background:linear-gradient(120deg,var(--navy),var(--navy2));color:white;padding:44px max(22px,calc((100vw - 1280px)/2)) 38px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid #ffffff1c;border-radius:50%;right:-90px;top:-190px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff06}
+.eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:#9edee1;font-weight:800}
+h1{font-size:clamp(2rem,4.6vw,3.65rem);line-height:1.04;letter-spacing:-.035em;margin:13px 0 15px;max-width:900px}
+.hero p{max-width:850px;color:#dce8f5;font-size:1.08rem;line-height:1.65;margin:0}
+.hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.hero-tags span{border:1px solid #ffffff38;border-radius:999px;padding:7px 11px;color:#eef7ff;font-size:.82rem}
+.wrap{max-width:1280px;margin:0 auto;padding:26px 20px 60px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.nav a{text-decoration:none;color:var(--navy);background:white;border:1px solid var(--line);border-radius:999px;padding:9px 13px;font-size:.85rem;font-weight:700}
+.section{margin-top:28px;scroll-margin-top:20px}.section-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}.section-number{flex:0 0 42px;width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--navy);color:white;font-weight:850}.section-head h2{margin:0 0 5px;font-size:1.55rem;letter-spacing:-.02em}.section-head p{margin:0;color:var(--muted);line-height:1.55;max-width:900px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:22px}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.problem{background:var(--softred);border:1px solid #f4d1ce;border-radius:14px;padding:19px}.solution{background:var(--softgreen);border:1px solid #cce9dc;border-radius:14px;padding:19px}.problem h3,.solution h3{margin:0 0 10px}.problem ul,.solution ul{padding-left:21px;margin:8px 0 0;line-height:1.7}.callout{border-left:4px solid var(--blue);background:var(--softblue);padding:13px 15px;border-radius:0 10px 10px 0;line-height:1.6;margin-top:14px}
+.flow-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;align-items:stretch}
+.flow-card{position:relative;background:white;border:1px solid var(--line);border-radius:15px;padding:16px;min-height:235px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.flow-card.active{border-color:#2b7cbd;box-shadow:0 0 0 3px #2b7cbd22, var(--shadow);transform:translateY(-2px)}
+.flow-card:not(:last-child):after{content:"→";position:absolute;right:-17px;top:43%;z-index:2;background:var(--bg);color:var(--blue);font-size:1.35rem;font-weight:900;padding:0 3px}
+.flow-top{display:flex;align-items:center;gap:9px;margin-bottom:12px}.icon-chip{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--softblue);color:var(--blue);flex:0 0 42px}.icon-chip svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.visual-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;align-items:stretch}.visual-node{position:relative;background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px 14px;text-align:center;box-shadow:var(--shadow)}.visual-node:not(:last-child):after{content:"➜";position:absolute;right:-22px;top:42%;font-size:1.25rem;color:var(--blue);font-weight:900}.visual-node .icon-chip{margin:0 auto 10px}.visual-node strong{display:block;font-size:.92rem;margin-bottom:6px}.visual-node small{display:block;color:var(--muted);font-size:.78rem;line-height:1.45}.visual-label{display:inline-block;margin-top:10px;border-radius:999px;padding:4px 8px;background:var(--softgreen);color:var(--green);font-size:.7rem;font-weight:800}.svg-wrap{overflow-x:auto}.architecture-svg{width:100%;min-width:700px;height:auto;display:block}.journey{display:grid;grid-template-columns:1fr auto 1fr;gap:15px;align-items:center}.journey-card{padding:18px;border-radius:14px;border:1px solid var(--line);background:white}.journey-card h3{margin:0 0 8px}.journey-card ul{margin:0;padding-left:20px;line-height:1.7;color:var(--muted)}.journey-arrow{font-size:1.8rem;color:var(--blue);font-weight:900}.icon-list{list-style:none!important;padding:0!important}.icon-list li{display:flex;gap:10px;align-items:flex-start;margin:10px 0}.icon-list .mini-icon{flex:0 0 28px;height:28px;border-radius:8px;background:#edf5ff;display:grid;place-items:center;color:var(--blue);font-size:1rem}.icon-list span:last-child{line-height:1.5}.bubble{width:33px;height:33px;border-radius:10px;background:var(--softblue);color:var(--blue);display:grid;place-items:center;font-weight:850}.flow-card h3{font-size:.97rem;margin:0}.flow-card p{font-size:.85rem;color:var(--muted);line-height:1.55;margin:9px 0}.tag{display:inline-block;background:#edf2f7;color:#4a6079;border-radius:7px;padding:5px 7px;font-size:.72rem;font-weight:750;margin:3px 3px 0 0}
+.code{background:#101d2e;color:#dceaff;border-radius:11px;padding:16px;overflow:auto;font: .83rem/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.subpanel{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff}.subpanel h3{margin:0 0 10px}.subpanel p{line-height:1.6;color:var(--muted);margin:8px 0}.subpanel ul{padding-left:20px;line-height:1.65;color:var(--muted)}
+.decision{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}.decision-card{border-radius:13px;padding:16px;border:1px solid var(--line);background:white}.decision-card h4{margin:0 0 7px}.decision-card p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.55}.yes{background:var(--softgreen);border-color:#cbe7da}.no{background:var(--softamber);border-color:#f0dfba}.decision-arrow{font-weight:900;color:var(--blue);font-size:1.5rem}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{border:1px solid var(--line);background:white;border-radius:14px;padding:17px}.metric strong{display:block;font-size:1.35rem;color:var(--green);margin-bottom:7px}.metric span{display:block;color:var(--muted);font-size:.83rem;line-height:1.5}
+.impact-note{font-size:.82rem;color:var(--muted);line-height:1.6;margin:13px 0 0}
+.demo-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:.8rem;font-weight:800;margin-bottom:6px}input,select,textarea{width:100%;border:1px solid #c8d5e4;border-radius:9px;padding:11px 12px;background:white;color:var(--ink)}textarea{min-height:78px;resize:vertical}.check{display:flex;align-items:center;gap:9px;margin:13px 0;color:var(--muted);font-size:.88rem}.check input{width:auto}
+button{border:0;border-radius:9px;background:var(--blue);color:white;font-weight:800;padding:12px 15px;cursor:pointer}button:hover{filter:brightness(1.08)}button.secondary{background:#e9eff6;color:var(--navy)}.button-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.result-box{border:1px solid var(--line);background:#f8fafc;border-radius:12px;padding:15px;min-height:120px}.status{display:inline-block;background:var(--softamber);color:#80530b;border-radius:999px;padding:5px 9px;font-size:.74rem;font-weight:850}.result-box p{color:var(--muted);line-height:1.5;font-size:.88rem}.result-box li{color:var(--muted);font-size:.85rem;line-height:1.5;margin:5px 0}.mini-title{font-size:.87rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:850;margin:18px 0 8px}
+table{width:100%;border-collapse:collapse;font-size:.87rem}th,td{text-align:left;border-bottom:1px solid var(--line);padding:11px 9px;vertical-align:top}th{color:var(--navy);background:#f6f9fc}td{color:var(--muted);line-height:1.5}
+.warning{border:1px solid #f0dfba;background:var(--softamber);padding:14px;border-radius:12px;line-height:1.6;color:#77521b;font-size:.9rem}
+footer{padding:24px;text-align:center;color:var(--muted);font-size:.82rem}
+@media(max-width:1000px){.visual-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.visual-node:not(:last-child):after{display:none}.flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-card:after{display:none}.metrics{grid-template-columns:repeat(2,1fr)}.demo-layout{grid-template-columns:1fr}}
+@media(max-width:650px){.visual-flow,.journey,.problem-grid,.two-col,.decision{grid-template-columns:1fr}.journey-arrow{transform:rotate(90deg);text-align:center}.decision-arrow{transform:rotate(90deg);text-align:center}.flow-grid,.metrics,.form-grid{grid-template-columns:1fr}.panel{padding:16px}.hero{padding-top:32px}}
+@media print{.nav,.demo-controls,button{display:none!important}body{background:white}.panel,.flow-card{box-shadow:none;break-inside:avoid}.hero{padding:24px}.wrap{padding:15px}}
+</style></head>
+<body>
+<header class="hero">
+ <div class="eyebrow">Business problem → AI workflow → governed output</div>
+ <h1>AI-Powered CRM Request Automation</h1>
+ <p>A detailed walkthrough of how a repetitive marketing audience request can move from manual analyst handling to an explainable, AI-assisted workflow—with query checks, sample output, auditability and human approval.</p>
+ <div class="hero-tags"><span>Marketing Operations</span><span>LLM-assisted coding</span><span>SQL & Data</span><span>Human-in-the-loop</span><span>Auditability</span></div>
+</header>
+<main class="wrap">
+ <nav class="nav" aria-label="Page sections">
+  <a href="#problem">Business problem</a><a href="#visual-map">Visual map</a><a href="#workflow">Workflow</a><a href="#architecture-map">Architecture map</a><a href="#logic">Decision logic</a><a href="#controls">Quality & governance</a><a href="#impact">Impact</a><a href="#demo">Interactive demo</a>
+ </nav>
+
+ <section class="section" id="problem">
+  <div class="section-head"><div class="section-number">01</div><div><h2>The marketing problem</h2><p>CRM teams frequently need an audience extracted from a data platform so a campaign can be launched. When every request requires manual analyst handling, turnaround and analyst capacity become bottlenecks.</p></div></div>
+  <div class="panel">
+   <div class="problem-grid">
+    <article class="problem"><h3>◷ Before: manual request handling</h3>
+     <ul><li>Marketing submits audience criteria on a request board.</li><li>An analyst interprets the request and opens the data platform.</li><li>The analyst writes or adapts SQL and checks exclusion criteria.</li><li>The output file is saved to a repository.</li><li>The analyst returns to the board to attach/comment and update status.</li></ul>
+    </article>
+    <article class="solution"><h3>✦ After: AI-assisted workflow</h3>
+     <ul><li>Read and normalize the incoming request.</li><li>Compare the request against historical examples.</li><li>Reuse approved logic when the match is strong; otherwise draft a query for review.</li><li>Run validation checks and create a safe preview.</li><li>Prepare the output and board update while keeping a human approval gate.</li></ul>
+    </article>
+   </div>
+   <div class="callout"><strong>Design principle:</strong> automate repeatable work, not accountability. The workflow can assist with matching, query drafting and orchestration, but audience logic and exclusions must still be verified before production delivery.</div>
+  </div>
+ </section>
+
+ <section class="section" id="visual-map">
+  <div class="section-head"><div class="section-number">↗</div><div><h2>Solution at a glance</h2><p>A visual summary of how the request moves through the system—from a marketing need to a reviewed, auditable output.</p></div></div>
+  <div class="panel">
+   <div class="visual-flow" aria-label="Five-stage CRM automation flow">
+    <div class="visual-node"><div class="icon-chip"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><path d="M7 2v3M17 2v3"/></svg></div><strong>1. Request</strong><small>Marketing submits audience criteria in Monday.com</small><span class="visual-label">Structured intake</span></div>
+    <div class="visual-node"><div class="icon-chip"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5M8 10h5M10.5 7.5v5"/></svg></div><strong>2. Find context</strong><small>Compare against historical requests and approved patterns</small><span class="visual-label">Knowledge reuse</span></div>
+    <div class="visual-node"><div class="icon-chip"><svg viewBox="0 0 24 24"><path d="m8 6-5 6 5 6M16 6l5 6-5 6M14 4l-4 16"/></svg></div><strong>3. Draft logic</strong><small>Reuse a safe template or draft SQL for analyst review</small><span class="visual-label">AI-assisted</span></div>
+    <div class="visual-node"><div class="icon-chip"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="m8 12 2.5 2.5L16 9"/></svg></div><strong>4. Validate</strong><small>Check filters, exclusions, preview and approval</small><span class="visual-label">Human control</span></div>
+    <div class="visual-node"><div class="icon-chip"><svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 13h8M8 17h6"/></svg></div><strong>5. Deliver</strong><small>Prepare reviewed output and record the audit trail</small><span class="visual-label">Traceable output</span></div>
+   </div>
+   <div class="callout"><strong>Decision gate:</strong> a strong historical match can accelerate reuse, but it does not bypass validation or human approval. A weak match goes to a review queue.</div>
+  </div>
+  <div class="panel" style="margin-top:14px"><div class="journey"><div class="journey-card" style="background:var(--softred);border-color:#f4d1ce"><h3>Before · Manual</h3><ul class="icon-list"><li><span class="mini-icon">⌕</span><span>Search old requests and query files manually</span></li><li><span class="mini-icon">⌨</span><span>Rebuild or adapt SQL by hand</span></li><li><span class="mini-icon">↻</span><span>Repeat checks and update request status</span></li></ul></div><div class="journey-arrow">→</div><div class="journey-card" style="background:var(--softgreen);border-color:#cce9dc"><h3>After · AI-assisted</h3><ul class="icon-list"><li><span class="mini-icon">✦</span><span>Retrieve relevant historical context</span></li><li><span class="mini-icon">⚙</span><span>Draft or reuse logic with guardrails</span></li><li><span class="mini-icon">✓</span><span>Review, record and return the result</span></li></ul></div></div></div>
+ </section>
+
+ <section class="section" id="workflow">
+  <div class="section-head"><div class="section-number">02</div><div><h2>End-to-end workflow</h2><p>Select any step to highlight its role. The sequence mirrors a practical implementation: request intake, historical pattern matching, query generation, validation and output update.</p></div></div>
+  <div class="flow-grid" id="flowGrid">
+   <article class="flow-card active" tabindex="0" data-step="0"><div class="flow-top"><div class="bubble">01</div><h3>Request intake</h3></div><p>Capture request ID, campaign, audience description, inactivity window, country and exclusion rules from the request board.</p><span class="tag">Monday.com/API</span><span class="tag">Schema validation</span></article>
+   <article class="flow-card" tabindex="0" data-step="1"><div class="flow-top"><div class="bubble">02</div><h3>Understand & match</h3></div><p>Compare structured fields with historical requests and approved query patterns. Keep the match score and reason explainable.</p><span class="tag">Historical repository</span><span class="tag">Cursor / LLM</span></article>
+   <article class="flow-card" tabindex="0" data-step="2"><div class="flow-top"><div class="bubble">03</div><h3>Generate query</h3></div><p>For a strong match, reuse approved logic. For a new pattern, draft a SELECT query and send it to review instead of blindly executing it.</p><span class="tag">SQL draft</span><span class="tag">Databricks Genie</span></article>
+   <article class="flow-card" tabindex="0" data-step="3"><div class="flow-top"><div class="bubble">04</div><h3>Validate & review</h3></div><p>Check query shape, exclusions, audience count and sample records. A designated reviewer verifies logic before production delivery.</p><span class="tag">Guardrails</span><span class="tag">Human approval</span></article>
+   <article class="flow-card" tabindex="0" data-step="4"><div class="flow-top"><div class="bubble">05</div><h3>Output & update</h3></div><p>Save the approved audience output, record an audit event, and comment/update the original request board.</p><span class="tag">Repository</span><span class="tag">Audit log</span></article>
+  </div>
+  <div class="panel" style="margin-top:16px">
+   <div class="two-col"><div><h3 id="detailTitle">Step 1 — Request intake</h3><p id="detailText" style="color:var(--muted);line-height:1.7">The request is normalized into a consistent schema before any matching or query generation begins. Required fields and acceptable ranges are checked early so ambiguous requests do not silently progress.</p></div><div><div class="mini-title">Example request payload</div><pre class="code" id="detailCode">{
+  "request_id": "CRM-DEMO-001",
+  "campaign": "Re-engagement",
+  "inactive_days": 30,
+  "country": "IN",
+  "exclude_flagged_users": true
+}</pre></div></div>
+  </div>
+ </section>
+
+ <section class="section" id="logic">
+  <div class="section-head"><div class="section-number">03</div><div><h2>Decision logic: reuse or draft?</h2><p>The most important decision is whether a request is sufficiently similar to a previously approved pattern. A partial match should not be treated as permission to auto-run a query.</p></div></div>
+  <div class="panel">
+   <div class="decision">
+    <div class="decision-card"><h4>High-confidence match</h4><p>Key criteria match an approved historical example. Reuse its query template, bind the current values, and still require output review.</p><div style="margin-top:10px"><span class="tag">Reuse approved logic</span><span class="tag">Review output</span></div></div>
+    <div class="decision-arrow">→</div>
+    <div class="decision-card yes"><h4>Controlled processing</h4><p>Run static checks, preview audience counts, inspect exclusions, and prepare the request-board update only after checks pass.</p></div>
+   </div>
+   <div class="decision" style="margin-top:14px">
+    <div class="decision-card"><h4>No safe match</h4><p>The request differs on an important attribute, or the repository does not contain a sufficiently similar approved pattern.</p><div style="margin-top:10px"><span class="tag">Draft only</span><span class="tag">No blind execution</span></div></div>
+    <div class="decision-arrow">→</div>
+    <div class="decision-card no"><h4>Review queue</h4><p>Draft a query for analyst review. The reviewer confirms business definitions, exclusions, table/column logic and expected audience size.</p></div>
+   </div>
+   <div class="callout"><strong>Why this matters:</strong> an LLM can generate plausible SQL that is still wrong. Historical matching, static checks, warehouse permissions and human review are separate layers—not substitutes for one another.</div>
+  </div>
+ </section>
+
+ <section class="section" id="architecture">
+  <div class="section-head"><div class="section-number">04</div><div><h2>How the code components fit together</h2><p>This maps the business flow to the project structure in the accompanying Python repository.</p></div></div>
+  <div class="panel" id="architecture-map">
+   <div class="mini-title" style="margin-top:0">System architecture · conceptual view</div>
+   <div class="svg-wrap"><svg class="architecture-svg" viewBox="0 0 1000 310" role="img" aria-label="Conceptual architecture connecting Monday.com, request orchestration, historical repository, LLM and Databricks Genie, SQL guardrails, human review, and approved output">
+    <defs><marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1769aa"/></marker></defs>
+    <rect x="15" y="30" width="155" height="72" rx="12" fill="#edf5ff" stroke="#b9d5f2"/><text x="92" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#173e68">Monday.com</text><text x="92" y="80" text-anchor="middle" font-size="12" fill="#62738a">Request intake</text>
+    <rect x="215" y="30" width="165" height="72" rx="12" fill="#f3efff" stroke="#d8ccfa"/><text x="297" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#6d4bb6">Orchestration</text><text x="297" y="80" text-anchor="middle" font-size="12" fill="#62738a">Parse + normalize</text>
+    <rect x="425" y="30" width="170" height="72" rx="12" fill="#eaf7f1" stroke="#bfe4d3"/><text x="510" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#16815b">Historical store</text><text x="510" y="80" text-anchor="middle" font-size="12" fill="#62738a">Approved patterns</text>
+    <rect x="640" y="30" width="160" height="72" rx="12" fill="#fff6e6" stroke="#f0dfba"/><text x="720" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#9a5b09">SQL assistance</text><text x="720" y="80" text-anchor="middle" font-size="12" fill="#62738a">Template / draft</text>
+    <rect x="845" y="30" width="140" height="72" rx="12" fill="#edf5ff" stroke="#b9d5f2"/><text x="915" y="58" text-anchor="middle" font-size="15" font-weight="700" fill="#173e68">Guardrails</text><text x="915" y="80" text-anchor="middle" font-size="12" fill="#62738a">Static checks</text>
+    <path d="M170 66H211 M380 66H421 M595 66H636 M800 66H841" stroke="#1769aa" stroke-width="2.5" fill="none" marker-end="url(#arrowHead)"/>
+    <rect x="250" y="190" width="210" height="75" rx="12" fill="#fff0ef" stroke="#f0c6c2"/><text x="355" y="220" text-anchor="middle" font-size="15" font-weight="700" fill="#b63c3c">Human reviewer</text><text x="355" y="242" text-anchor="middle" font-size="12" fill="#62738a">Business logic + approval</text>
+    <rect x="560" y="190" width="210" height="75" rx="12" fill="#eaf7f1" stroke="#bfe4d3"/><text x="665" y="220" text-anchor="middle" font-size="15" font-weight="700" fill="#16815b">Reviewed output</text><text x="665" y="242" text-anchor="middle" font-size="12" fill="#62738a">Preview + audit + update</text>
+    <path d="M915 102V150H355V186 M460 227H556" stroke="#1769aa" stroke-width="2.5" fill="none" marker-end="url(#arrowHead)"/><text x="615" y="141" font-size="12" fill="#62738a">Draft + validation result</text>
+    <path d="M665 190V155H92V106" stroke="#0e8790" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#arrowHead)"/><text x="180" y="148" font-size="12" fill="#0e8790">Reviewed status returned</text>
+   </svg></div>
+   <p class="impact-note">Conceptual architecture, not a live integration map. In the demo scaffold, data and outputs are local; production connectors, warehouse execution, authentication and deployment remain separate implementation steps.</p>
+  </div>
+  <div class="panel" style="margin-top:14px">
+   <table><thead><tr><th>Component</th><th>Responsibility</th><th>Production consideration</th></tr></thead><tbody>
+    <tr><td><code>app/main.py</code></td><td>API endpoints, request routing and dashboard serving.</td><td>Add authentication, authorization, rate limits and request correlation IDs.</td></tr>
+    <tr><td><code>app/schemas.py</code></td><td>Validate required request fields and allowed value ranges.</td><td>Use explicit business rules and reject ambiguous or incomplete requests.</td></tr>
+    <tr><td><code>app/matcher.py</code></td><td>Compare request attributes against approved historical patterns.</td><td>Calibrate thresholds on labelled examples; monitor false matches and drift.</td></tr>
+    <tr><td><code>app/adapters.py</code></td><td>Demo query drafting, sample audience preview and request-board payload.</td><td>Replace placeholders with approved LLM, warehouse and Monday.com adapters.</td></tr>
+    <tr><td><code>app/sql_guardrails.py</code></td><td>Basic static checks for the generated SQL draft.</td><td>Static checks are not a security boundary; enforce read-only access and table allowlists at the data platform.</td></tr>
+    <tr><td><code>data/historical_requests.json</code></td><td>Stores example approved request patterns and templates.</td><td>Version templates, track owners/approvals, and avoid storing sensitive audience data.</td></tr>
+    <tr><td><code>data/audit_log.jsonl</code></td><td>Records request status, match result and preview details.</td><td>Use durable, access-controlled logging with retention and privacy controls.</td></tr>
+   </tbody></table>
+  </div>
+ </section>
+
+ <section class="section" id="controls">
+  <div class="section-head"><div class="section-number">05</div><div><h2>Quality controls and human oversight</h2><p>The objective is to reduce repetitive work while preserving data quality, privacy and accountability.</p></div></div>
+  <div class="two-col">
+   <article class="subpanel"><h3>🛡️ Automated checks</h3><ul><li>Required request fields and value ranges.</li><li>Historical template match score and reason.</li><li>SQL draft checks: SELECT-only shape, one statement and LIMIT requirement.</li><li>Preview count and sample records using local demo data.</li><li>Audit event and request status payload.</li></ul></article>
+   <article class="subpanel"><h3>👤 Human reviewer confirms</h3><ul><li>Business interpretation of the audience definition.</li><li>Correct inclusion and exclusion criteria.</li><li>Expected audience size and sample rows.</li><li>Permitted data sources and query performance.</li><li>Approval before any campaign delivery or live board update.</li></ul></article>
+  </div>
+  <div class="warning" style="margin-top:14px"><strong>Demo limitation:</strong> this project uses local sample data. It does not call a real LLM, access Monday.com, or execute SQL in Databricks. The workflow illustrates the architecture and review controls; live integrations require separate credentials, permissions, testing and approval.</div>
+ </section>
+
+ <section class="section" id="impact">
+  <div class="section-head"><div class="section-number">06</div><div><h2>Business impact: what to measure</h2><p>Use operational metrics to demonstrate whether automation actually creates capacity and improves service levels.</p></div></div>
+  <div class="metrics">
+   <div class="metric"><strong>85–90%</strong><span>Initial testing accuracy reported in the project context. Validate against a labelled test set before making a performance claim.</span></div>
+   <div class="metric"><strong>Turnaround</strong><span>Median time from request submission to review-ready output, segmented by request type.</span></div>
+   <div class="metric"><strong>Analyst effort</strong><span>Active minutes spent per request before and after automation—not just elapsed time.</span></div>
+   <div class="metric"><strong>Quality</strong><span>First-pass approval rate, rework rate, exclusion errors and production incidents.</span></div>
+  </div>
+  <div class="callout"><strong>Example calculation:</strong> if median turnaround falls from 60 minutes to 15 minutes, elapsed turnaround is reduced by 75%. Measure analyst active time separately before claiming a 75% reduction in effort.</div>
+ </section>
+
+ <section class="section" id="demo">
+  <div class="section-head"><div class="section-number">07</div><div><h2>Interactive workflow demo</h2><p>Submit a sample request to the local API and see the matching result, SQL draft, audience preview and review steps.</p></div></div>
+  <div class="panel">
+   <p class="warning">For this interactive form to work, run the Python API from the project folder with <code>uvicorn app.main:app --reload</code>. The dashboard alone can still be read as a static explanation.</p>
+   <div class="demo-layout" style="margin-top:16px">
+    <form id="requestForm">
+     <div class="form-grid">
+      <div><label for="request_id">Request ID</label><input id="request_id" value="CRM-DEMO-001" required></div>
+      <div><label for="campaign">Campaign</label><select id="campaign"><option>Re-engagement</option><option>Win-back</option><option>New campaign</option></select></div>
+      <div><label for="inactive_days">Inactive days</label><input id="inactive_days" type="number" min="0" max="3650" value="30" required></div>
+      <div><label for="country">Country code</label><input id="country" value="IN" maxlength="2" required></div>
+     </div>
+     <div style="margin-top:12px"><label for="audience_description">Audience description</label><textarea id="audience_description" required>Users inactive for 30 days</textarea></div>
+     <label class="check"><input id="exclude_flagged_users" type="checkbox" checked> Exclude flagged users</label>
+     <label for="requestor">Requestor</label><input id="requestor" value="Marketing Team">
+     <div class="button-row"><button type="submit">Run demo request</button><button type="button" class="secondary" id="resetBtn">Reset example</button></div>
+    </form>
+    <div>
+     <div class="mini-title" style="margin-top:0">Workflow result</div>
+     <div class="result-box" id="result"><span class="status">Awaiting request</span><p>Submit the form to display the API response. This demonstration does not execute SQL against a live data platform.</p></div>
+     <div class="mini-title">SQL draft</div><pre class="code" id="sqlOutput">-- The SQL draft will appear here</pre>
+    </div>
+   </div>
+  </div>
+ </section>
+ <footer>AI-Powered CRM Request Automation · Portfolio reference architecture · Demo mode</footer>
+</main>
+<script>
+const stepDetails = [
+ {title:"Step 1 — Request intake",text:"The request is normalized into a consistent schema before matching begins. Required fields and acceptable ranges are checked early so ambiguous requests do not silently progress.",code:'{\\n  "request_id": "CRM-DEMO-001",\\n  "campaign": "Re-engagement",\\n  "inactive_days": 30,\\n  "country": "IN",\\n  "exclude_flagged_users": true\\n}'},
+ {title:"Step 2 — Understand and match",text:"The matcher compares inactivity window, country, exclusion rule and campaign type with historical examples. A match score and human-readable reason make the decision explainable.",code:'Match score = weighted attribute agreement\\n\\nInactivity window  50%\\nCountry             20%\\nExclusion rule      20%\\nCampaign type       10%\\n\\nHigh-confidence match → approved template\\nPartial match        → review required'},
+ {title:"Step 3 — Generate query",text:"When a safe historical pattern exists, reuse its approved query template with the current request values. If not, draft a SELECT query for review. The demo never executes generated SQL.",code:'SELECT user_id\\nFROM analytics.user_activity\\nWHERE last_active_date <= date_sub(current_date(), 30)\\n  AND country = \\'IN\\'\\n  AND is_flagged = false\\nLIMIT 1000;\\n\\n-- Draft only; not executed in demo mode.'},
+ {title:"Step 4 — Validate and review",text:"Static checks look for obvious problems such as non-SELECT statements, multiple statements or missing LIMIT. These checks are only a first layer; a human reviewer must verify business logic and exclusions.",code:'Checks before approval:\\n✓ Request fields valid\\n✓ Query draft passes static checks\\n✓ Audience preview generated\\n✓ Exclusion criteria reviewed\\n✓ Human approval required'},
+ {title:"Step 5 — Output and update",text:"After validation, the workflow prepares audience output metadata and a request-board update payload, then writes an audit event. In this demo, no file is sent to a campaign platform and no board update is posted.",code:'Request status: review_required\\nAudience preview: local sample CSV\\nBoard update: payload prepared\\nAudit event: written locally\\n\\nProduction delivery requires explicit approval.'}
+];
+document.querySelectorAll(".flow-card").forEach(card=>{
+ const activate=()=>{document.querySelectorAll(".flow-card").forEach(c=>c.classList.remove("active"));card.classList.add("active");const d=stepDetails[Number(card.dataset.step)];document.getElementById("detailTitle").textContent=d.title;document.getElementById("detailText").textContent=d.text;document.getElementById("detailCode").textContent=d.code;};
+ card.addEventListener("click",activate);card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();activate();}});
+});
+const form=document.getElementById("requestForm"),result=document.getElementById("result"),sql=document.getElementById("sqlOutput");
+form.addEventListener("submit",async e=>{
+ e.preventDefault();
+ const payload={request_id:document.getElementById("request_id").value.trim(),campaign:document.getElementById("campaign").value,audience_description:document.getElementById("audience_description").value.trim(),inactive_days:Number(document.getElementById("inactive_days").value),country:document.getElementById("country").value.trim().toUpperCase(),exclude_flagged_users:document.getElementById("exclude_flagged_users").checked,requestor:document.getElementById("requestor").value.trim()};
+ result.textContent="Processing request…";
+ try{
+  const response=await fetch("/api/requests",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+  const data=await response.json();if(!response.ok)throw new Error(data.detail||"Request failed");
+  result.replaceChildren();const badge=document.createElement("span");badge.className="status";badge.textContent=data.status;
+  const summary=document.createElement("p");summary.textContent=`Template: ${data.matched_template_id||"No high-confidence match"} · Match score: ${data.match_score} · Preview rows: ${data.audience_count_preview}`;
+  const ul=document.createElement("ul");(data.steps||[]).forEach(step=>{const li=document.createElement("li");li.textContent=step;ul.appendChild(li);});
+  result.append(badge,summary,ul);sql.textContent=data.sql_draft||"-- No query draft returned";
+ }catch(error){result.textContent="Could not reach the local API. Start it with: uvicorn app.main:app --reload. Details: "+error.message;}
+});
+document.getElementById("resetBtn").addEventListener("click",()=>{form.reset();document.getElementById("request_id").value="CRM-DEMO-001";document.getElementById("inactive_days").value=30;document.getElementById("country").value="IN";document.getElementById("audience_description").value="Users inactive for 30 days";result.innerHTML='<span class="status">Awaiting request</span><p>Submit the form to display the API response.</p>';sql.textContent="-- The SQL draft will appear here";});
+</script>
+</body></html>
